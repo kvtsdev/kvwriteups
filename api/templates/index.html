@@ -262,7 +262,7 @@ A pretty good explanation of these would be the following video, it explains eve
                   <h3>How this works</h3>
                   <p>SYN flooding is a type of Denial-of-Service (DoS) attack that overwhelms a target server by exploiting the TCP handshake process. Normally, when a device wants to establish a connection, it sends a SYN (synchronize) packet, the server replies with a SYN-ACK (synchronize-acknowledge) packet, and then the device responds with an ACK (acknowledge) packet to complete the handshake. In a SYN flood attack, the attacker sends a massive number of SYN requests but never completes the handshake by sending the final ACK. This leaves the server with a ton of half-open connections that is waiting to be completed, consuming resources until it slows down or crashes, preventing legitimate users from connecting and users that are already connected, from using the Wi-Fi.</p>
                   <h3>Prerequisites</h3>
-                  <p>You need to download hping3 on your kali machine. Depending on what distribution you use, follow one of these: </p>
+                  <p>You need to download hping3 on your linux-based machine. Depending on what distribution you use, follow one of these: </p>
                   <p><ul>
     <li><strong>On Debian/Ubuntu:</strong>  
         <div class="code-block">
