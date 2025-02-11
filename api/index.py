@@ -4,8 +4,415 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    return """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kvts.WU</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            display: flex;
+        }
+        #sidebar {
+            width: 250px;
+            padding: 20px 10px; 
+            border-right: 1px solid white;
+            position: relative;
+            margin-top: 50px; 
+        }
+        .dropdown {
+            margin-bottom: 10px;
+            
+        }
+        .dropdown-content {
+            display: none;
+            margin-left: 15px;
+        }
+        .dropdown button {
+            background: none;
+            border: none;
+            color: grey;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.6s;
+            font-family: monospace; 
+            white-space: nowrap;  
+            overflow: hidden;
+            text-overflow: ellipsis; 
 
-@app.route('/about')
-def about():
-    return 'About'
+        }
+        .dropdown button:hover {
+            color: violet;
+        }
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-left: 20px;
+        }
+        #ascii-art {
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        pre {
+            white-space: pre;
+            color: grey;
+            transition: color 0.6s;
+            text-align: center;
+        }
+        pre:hover {
+            color: violet;
+        }
+        .code-block {
+            position: relative;
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ff79c6;
+            display: inline-block;
+            margin-top: 10px;
+            max-width: fit-content;
+            word-wrap: break-word;
+            padding-right: 50px;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #444;
+            border: none;
+            color: white;
+            padding: 3px 6px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        .copy-btn:hover {
+            background: violet;
+        }
+        .copied {
+            background: green !important;
+            color: black !important;
+        }
+        a {
+            text-decoration: none;
+        }
+        #typing-container {
+            position: absolute;
+            top: 10px;
+            left: 20px; 
+            font-size: 16px;
+            color: white;
+            max-width: 250px;
+            white-space: pre-line;
+            text-align: left; 
+        }
+        #cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: white;
+            margin-left: 3px;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            50% { background-color: transparent; }
+        }
+        #links-container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .terminal-link {
+            font-family: monospace;
+            font-size: 18px;
+            color: grey;
+            text-decoration: none;
+            margin-right: 30px; 
+            transition: color 0.6s;
+        }
+
+        .terminal-link:hover {
+            color: violet;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        
+        <div class="dropdown">
+     
+
+
+            <button onclick="toggleDropdown('networking')">[+] Networking</button>
+            <div id="networking" class="dropdown-content">
+                <button onclick="loadContent('For Beginners')">- For Beginners</button><br>
+                <button onclick="loadContent('Flooding routers')">- Flooding routers</button><br>
+                <button onclick="loadContent('Corrupting network traffic')">- Corrupting network<br>traffic 🔒</button>
+                <button onclick="loadContent('Mimicking routers')">- Mimicking routers 🔒</button>
+              <button onclick="loadContent('Performing DDoS Attacks')">- DDoS Attacks 🔒</button>
+      
+            </div>
+        </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('opsec')">[+] operational security</button>
+            <div id="opsec" class="dropdown-content">
+                <button onclick="loadContent('Setting up an untraceable device (with internet access)')">- set up an anonymous and <br>untraceable device</button><br>
+                <button onclick="loadContent('Hide your activity from the feds')">- hide your activity<br>from the FBI/CIA </button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('anti-forensics')">[+] Anti-Forensics</button>
+            <div id="anti-forensics" class="dropdown-content">
+                <button onclick="loadContent('Wiping Metadata')">- Wiping Metadata</button><br>
+                <button onclick="loadContent('File Obfuscation')">- File Obfuscation</button>
+            </div>
+        </div>
+        
+    </div>
+    <div id="content">
+        <a href="https://kvtsdev.github.io" target="_blank">
+            <pre id="ascii-art">
+   __        __      _      ____  __
+  / /___  __/ /____ | | /| / / / / /
+ /  '_/ |/ / __(_-<_| |/ |/ / /_/ / 
+/_/\_\|___/\__/___(_)__/|__/\____/  
+my personal write-ups
+            </pre>
+        </a>
+        <div id="tutorial-content">
+          <p>Welcome to kvts.WU, a website where I post guides, write-ups, cheatsheets and notes for cybersecurity engineers.<br><br>
+          
+Any info posted here is for educational purposes. I do not hold responsibility of the usage of these methods. I do not own neither control these methods or the consequences they can lead to. By following tutorials here that can be used for unethical reasons, You agree that it is your responsibility. A lot of this information is censored to prevent from people causing chaos. If this becomes a problem, I will shut down this page.<br><br>
+
+Cybercrime is a serious crime that can land up to 15 years in prison (federal level) and cost millions worth of fines.</p>
+
+    
+         
+          <div id="links-container">
+              <a href="https://ko-fi.com/kyvts" class="terminal-link">Donate</a>
+              <a href="https://github.com/meowistic" class="terminal-link">GitHub</a>
+              <a href="https://discord.gg/AFxYAS5UMV" class="terminal-link">Discord</a>
+          </div>
+      </div>
+
+
+    </div>
+
+    <!-- Typing Animation Container -->
+    <div id="typing-container">
+        <span id="typing"></span><span id="cursor"></span>
+    </div>
+
+    <script>
+        function toggleDropdown(id) {
+            let content = document.getElementById(id);
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        }
+
+        function loadContent(topic) {
+          let content = document.getElementById('tutorial-content');
+          if (topic === 'Wiping Metadata') {
+              content.innerHTML = `
+                  <h2>Wiping Metadata</h2>
+                  <p>Metadata contains information about a file, such as timestamps, author details, and even GPS locations for images. To remove metadata, use the following command in Linux:</p>
+                  <div class="code-block">
+                      <button class="copy-btn" onclick="copyToClipboard(this, 'exiftool -all= file.jpg')">Copy</button>
+                      <code>exiftool -all= file.jpg</code>
+                  </div>
+                  <p>Ensure you verify the removal using:</p>
+                  <div class="code-block">
+                      <button class="copy-btn" onclick="copyToClipboard(this, 'exiftool file.jpg')">Copy</button>
+                      <code>exiftool file.jpg</code>
+                  </div>
+              `;
+          } else if (topic === 'For Beginners') {
+              content.innerHTML = `
+                  <h2>Beginners guide to networking</h2>
+                  <h3>Note: Networking is a complicated topic, expect to be learning for years to be able to actively 
+                  pentest and secure corporate networks. This won't be possible if you're just "lazy"</h3>
+                  <p>The first step to learning networking, is learning how the internet works. This means:
+<ul>
+<li>How does your computer even know how to visit websites</li>
+<li>How does your computer actually send data over?</li>
+<li>basic defense from attackers, and why you shouldn't enter unknown networks</li>
+</ul>
+This information is easily accessible on platforms like youtube, with medium-length tutorials and explanations.
+-
+A pretty good explanation of these would be the following video, it explains everything in pretty decent terms and in a moderate speed.
+</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1zVZ9cWFnCc?si=0h7RdJEsKWYAMEbX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+                  
+              `;
+          } else if (topic === 'Mimicking routers') {
+              content.innerHTML = `
+                  <h2>Mimicking routers 🔒</h2>
+                  <p>Mimicking routers is done by gaining control and changing the address resolution protocol and fooling all the devices connected, to think that your device is actually the router. This makes all network requests flow through you, letting you modify/read them. with extra steps, you can also hijack accounts/logins that are done on the wifi network, potentially compromising accounts and banking data</p>
+                  <p>This section has been privatized as it may contain information that can be used for illegal purposes. To access this writeup, your IP needs to be whitelisted</p>
+              `;
+          } else if (topic === 'Performing DDoS Attacks') {
+              content.innerHTML = `
+                  <h2>Performing DDoS Attacks 🔒</h2>
+                  <p>Distributed Denial of Service attacks are attacks carried towards servers from many different locations to disrupt/crash their network by overloading it with fake requests. This can be used to take down networks, or entire websites. This attack is wireless and can be performed at any distance, being able to disrupt many networks across the world.</p>
+                  <p>This section has been privatized as it may contain information that can be used for illegal purposes. To access this writeup, your IP needs to be whitelisted</p>
+              `;
+              
+          } else if (topic === 'Flooding routers') {
+              content.innerHTML = `
+                  <h2>Flooding internal routers</h2>
+                  <p>Flooding internal routers is done to test the stability of routers with millions of requests, seeing how well they can handle each one.</p>
+                  <p>This method is strong enough to take down home WI-Fis and potentially corporate ones within seconds (I have managed to perform about 3.6mil requests/min with this, completely taking down and overheating my router). The downside of this though, is that it is easily recognizable, Making it a non-stealthy method. Not only is it easy to detect, but it is also easy to defend against, by setting ratelimits on the network.</p>
+                  <h3>How this works</h3>
+                  <p>SYN flooding is a type of Denial-of-Service (DoS) attack that overwhelms a target server by exploiting the TCP handshake process. Normally, when a device wants to establish a connection, it sends a SYN (synchronize) packet, the server replies with a SYN-ACK (synchronize-acknowledge) packet, and then the device responds with an ACK (acknowledge) packet to complete the handshake. In a SYN flood attack, the attacker sends a massive number of SYN requests but never completes the handshake by sending the final ACK. This leaves the server with a ton of half-open connections that is waiting to be completed, consuming resources until it slows down or crashes, preventing legitimate users from connecting and users that are already connected, from using the Wi-Fi.</p>
+                  <h3>Prerequisites</h3>
+                  <p>You need to download hping3 on your kali machine. Depending on what distribution you use, follow one of these: </p>
+                  <p><ul>
+    <li><strong>On Debian/Ubuntu:</strong>  
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this, 'sudo apt update && sudo apt install hping3')">Copy</button>
+            <code>sudo apt update && sudo apt install hping3</code>
+        </div>
+    </li>
+    <li><strong>On Kali Linux:</strong>  
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this, 'sudo apt install hping3')">Copy</button>
+            <code>sudo apt install hping3</code>
+        </div>
+    </li>
+    <li><strong>On Arch Linux:</strong>  
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this, 'sudo pacman -S hping')">Copy</button>
+            <code>sudo pacman -S hping</code>
+        </div>
+    </li>
+    <li><strong>On Fedora:</strong>  
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this, 'sudo dnf install hping3')">Copy</button>
+            <code>sudo dnf install hping3</code>
+        </div>
+    </li>
+    <li><strong>On CentOS/RHEL (EPEL required):</strong>  
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this, 'sudo yum install epel-release && sudo yum install hping3')">Copy</button>
+            <code>sudo yum install epel-release && sudo yum install hping3</code>
+        </div>
+    </li>
+    <li><strong>On openSUSE:</strong>  
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this, 'sudo zypper install hping')">Copy</button>
+            <code>sudo zypper install hping</code>
+        </div>
+    </li>
+</ul></p>
+<p>After installing the library that is required for SYN flooding, you need to find your gateway IP (your router's identification, so that you can target it)</p>
+<p><strong>Find the default gateway IP:</strong></p>
+<p>run this command in your linux terminal</p>
+<div class="code-block">
+    <button class="copy-btn" onclick="copyToClipboard(this, 'ip route')">Copy</button>
+    <code>ip route</code>
+</div>
+
+<p><strong>Example output:</strong></p>
+<div class="code-block">
+    <code>default via 192.168.1.1 dev eth0 proto dhcp metric 100</code>
+</div>
+
+<p>The default gateway IP in this example is <strong>192.168.1.1</strong>. This will be your target once you start a network flood.</p>
+
+<p><strong>Flood the network using hping3:</strong></p>
+<p>This is the final step, which will execute the flood. This command will overload the router and timeout all the requests on it, for however long the command is running. The scale of the attack will be larger or smaller depending on how good your PC components are</p>
+<div class="code-block">
+    <button class="copy-btn" onclick="copyToClipboard(this, 'sudo hping3 -S --flood -V -p 80 192.168.1.1')">Copy</button>
+    <code>sudo hping3 -S --flood -V -p 80 192.168.1.1</code>
+</div>
+
+<p><strong>The following arguments...</strong></p>
+<ul>
+    <li><code>-S</code>: Sends SYN packets</li>
+    <li><code>--flood</code>: Sends packets as fast as possible</li>
+    <li><code>-V</code>: Verbose mode</li>
+    <li><code>-p 80</code>: Targets port 80 (HTTP)</li>
+    <li><code>192.168.1.1</code>: gateway IP</li>
+</ul>
+<p>After the flood is done, use <strong>ctrl + C</strong> to stop the process. This should return the network back to normal within a few minutes, depending on how long the flood was running for.</p>
+
+                  
+              `;
+              
+          } else if (topic === 'Corrupting network traffic') {
+            content.innerHTML = `
+<h2>Corrupting Network traffic 🔒</h2>
+<p>Corrupting network traffic is another network disruption method that is instead, undetectable. It corrupts the data that the router processes, leading to crashes, and unusable Wi-Fi. This can be done permanently, forcing the only solution to be factory resetting the router, as well as clearing the cache of the devices that were connected to it at that time</p>
+<p>This section has been privatized as it may contain information that can be used for illegal purposes. To access this writeup, your IP needs to be whitelisted</p>
+`;
+          } else {
+              content.innerHTML = '<h2>' + topic + '</h2><p>Content for ' + topic + ' coming soon...</p>';
+          }
+      }
+
+
+        function copyToClipboard(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = "Copied to clipboard";
+                button.classList.add("copied");
+                setTimeout(() => {
+                    button.textContent = "Copy";
+                    button.classList.remove("copied");
+                }, 500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        const messages = [
+            "NO SYSTEM\nIS SAFE >;3",
+            "why click this? I\nhave your IP now ;(",
+            "i love cats\nand cybersec <3"
+        ];
+
+        let msgIndex = 0;
+        let charIndex = 0;
+        let typingElement = document.getElementById("typing");
+
+        function typeMessage() {
+            if (charIndex < messages[msgIndex].length) {
+                typingElement.innerHTML = messages[msgIndex].substring(0, charIndex + 1).replace(/\n/g, '<br>');
+                charIndex++;
+                setTimeout(typeMessage, 100);
+            } else {
+                setTimeout(deleteMessage, 2000); 
+            }
+        }
+
+        function deleteMessage() {
+            if (charIndex > 0) {
+                typingElement.innerHTML = messages[msgIndex].substring(0, charIndex - 1).replace(/\n/g, '<br>');
+                charIndex--;
+                setTimeout(deleteMessage, 50);
+            } else {
+                msgIndex = (msgIndex + 1) % messages.length;
+                setTimeout(typeMessage, 500);
+            }
+        }
+
+        typeMessage();
+    </script>
+</body>
+</html>
+"""
