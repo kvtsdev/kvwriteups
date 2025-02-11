@@ -171,8 +171,8 @@
         <div class="dropdown">
             <button onclick="toggleDropdown('anti-forensics')">[+] Anti-Forensics</button>
             <div id="anti-forensics" class="dropdown-content">
-                <button onclick="loadContent('Wiping Metadata')">- Wiping Metadata</button><br>
-                <button onclick="loadContent('File Obfuscation')">- File Obfuscation</button>
+                <button onclick="loadContent('Clearing metadata')">- Clearing metadata</button><br>
+
             </div>
         </div>
         
@@ -202,11 +202,8 @@ Cybercrime is a serious crime that can land up to 15 years in prison (federal le
               <a href="https://discord.gg/AFxYAS5UMV" class="terminal-link">Discord</a>
           </div>
       </div>
-
-
     </div>
 
-    <!-- Typing Animation Container -->
     <div id="typing-container">
         <span id="typing"></span><span id="cursor"></span>
     </div>
@@ -219,19 +216,9 @@ Cybercrime is a serious crime that can land up to 15 years in prison (federal le
 
         function loadContent(topic) {
           let content = document.getElementById('tutorial-content');
-          if (topic === 'Wiping Metadata') {
+          if (topic === 'clearing metadata') {
               content.innerHTML = `
-                  <h2>Wiping Metadata</h2>
-                  <p>Metadata contains information about a file, such as timestamps, author details, and even GPS locations for images. To remove metadata, use the following command in Linux:</p>
-                  <div class="code-block">
-                      <button class="copy-btn" onclick="copyToClipboard(this, 'exiftool -all= file.jpg')">Copy</button>
-                      <code>exiftool -all= file.jpg</code>
-                  </div>
-                  <p>Ensure you verify the removal using:</p>
-                  <div class="code-block">
-                      <button class="copy-btn" onclick="copyToClipboard(this, 'exiftool file.jpg')">Copy</button>
-                      <code>exiftool file.jpg</code>
-                  </div>
+                  <p>uhh coming soon, or not?</p>
               `;
           } else if (topic === 'For Beginners') {
               content.innerHTML = `
